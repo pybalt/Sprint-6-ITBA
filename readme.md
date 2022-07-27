@@ -1,6 +1,6 @@
 # Smart Cookies
 
-##This repository belongs to Smart Cookies
+> This repository belongs to Smart Cookies
 
 | Members | |
 |--|--|
