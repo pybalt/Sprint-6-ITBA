@@ -1,0 +1,3 @@
+
+#! Llegado el caso, creariamos errores y excepciones.
+# ...
