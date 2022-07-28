@@ -1,4 +1,4 @@
-CREATE TABLE 'tipo_cuenta'(
+"""CREATE TABLE 'tipo_cuenta'(
 	'tipo_cuenta_id' INTEGER not NULL,
 	'tipo_cuenta_nombre' TEXT nor NULL,
 	PRIMARY KEY('tipo_cuenta_id' AUTOINCREMENT)
@@ -95,3 +95,4 @@ from cliente WHERE customer_name = 'Tyler' or customer_name = 'Anne' ORDER by ed
 SELECT *, date('now') as fecha,
 strftime('%Y', date('now')) - strftime('%Y', date(dob)) as EDAD
 from cliente WHERE customer_name = 'Tyler' or customer_name = 'Anne' ORDER by edad asc
+"""
