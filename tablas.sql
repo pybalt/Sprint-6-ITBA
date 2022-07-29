@@ -155,3 +155,32 @@ UPDATE cliente SET branch_id = 10 WHERE customer_id = 502;
 UPDATE cliente SET branch_id = 10 WHERE customer_id = 503;
 UPDATE cliente SET branch_id = 10 WHERE customer_id = 504;
 UPDATE cliente SET branch_id = 10 WHERE customer_id = 505;
+
+
+-- Eliminar el registro correspondiente a “Noel David” realizando la selección 
+--por el nombre y apellido (PRIMERO SE TIENE QUE CREAR)
+
+INSERT INTO cliente (customer_name, customer_surname, customer_DNI, dob, branch_id)
+VALUES
+(
+"David",
+"Noel",
+43711236,
+"2001-09-20",
+100
+);
+
+SELECT customer_name,customer_surname from cliente WHERE customer_surname = 'Noel' and customer_name = 'David';
+
+DELETE FROM cliente WHERE customer_surname = 'Noel' and customer_name = 'David';
+
+
+-- Consultar sobre cuál es el tipo de préstamo de mayor importe
+
+SELECT max(loan_total) FROM prestamo
+
+
+=========================================================================================================================================
+
+Tercera problemática 
+
