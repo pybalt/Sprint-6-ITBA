@@ -93,9 +93,13 @@ Segunda problemática
 
 --Mostrar las columnas de los clientes, ordenadas por el DNI de menor 
 --a mayor y cuya edad sea superior a 40 años
-SELECT customer_DNI, date('now') as fecha,
+
+CREATE VIEW clientesMenoresDe40 AS SELECT *, date('now') as fecha,
 strftime ('%Y', date('now'))- strftime ('%Y', date(dob)) as EDAD
 FROM cliente WHERE EDAD >40  ORDER BY CAST(customer_DNI as INT) ASC;
+
+SELECT customer_id as 'ID', branch_id as 'N° sucursal',customer_name as 'Nombre', customer_surname as 'Apellido', customer_DNI as 'DNI' , EDAD from clientesMenoresDe40;
+
 
 --Mostrar todos los clientes que se llaman “Anne” o “Tyler” ordenados 
 --por edad de menor a mayor
@@ -146,6 +150,7 @@ VALUES
 27
 )
 
+
 -- Actualizar 5 clientes recientemente agregados en la base de datos dado que 
 --hubo un error en el JSON que traía la información, la sucursal de todos es 
 --la 10
@@ -183,4 +188,3 @@ SELECT max(loan_total) FROM prestamo
 =========================================================================================================================================
 
 Tercera problemática 
-
