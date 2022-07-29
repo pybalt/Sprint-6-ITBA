@@ -85,13 +85,73 @@ FROM cliente WHERE EDAD>40
 ORDER by customer_DNI asc
 
 
-SELECT *, date('now') as fecha,
-strftime('%Y', date('now')) - strftime('%Y', date(dob)) as EDAD
-customer_name FROM cliente WHERE customer_name = 'Tyler' or customer_name = 'Anne'
+
+=========================================================================================================================================
+
+Segunda problemática 
+
+
+--Mostrar las columnas de los clientes, ordenadas por el DNI de menor 
+--a mayor y cuya edad sea superior a 40 años
+SELECT customer_DNI, date('now') as fecha,
+strftime ('%Y', date('now'))- strftime ('%Y', date(dob)) as EDAD
+FROM cliente WHERE EDAD >40  ORDER BY CAST(customer_DNI as INT) ASC;
+
+--Mostrar todos los clientes que se llaman “Anne” o “Tyler” ordenados 
+--por edad de menor a mayor
 
 SELECT *, date('now') as fecha,
 strftime('%Y', date('now')) - strftime('%Y', date(dob)) as EDAD
 from cliente WHERE customer_name = 'Tyler' or customer_name = 'Anne' ORDER by edad asc
-SELECT *, date('now') as fecha,
-strftime('%Y', date('now')) - strftime('%Y', date(dob)) as EDAD
-from cliente WHERE customer_name = 'Tyler' or customer_name = 'Anne' ORDER by edad asc
+
+
+
+--Dado el siguiente JSON. Insertar 5 nuevos clientes en la base de datos y verificar que se haya realizado con éxito la inserción
+
+INSERT INTO cliente (customer_name, customer_surname, customer_DNI, dob, branch_id)
+VALUES
+(
+"Lois",
+"Stout",
+47730534,
+"1984-07-07",
+80
+),
+(
+"Hall",
+"Mcconnell",
+52055464,
+"1968-04-30",
+45
+),
+(
+"Hilel",
+"Mclean",
+43625213,
+"1993-03-28",
+77
+),
+(
+"Jin",
+"Cooley",
+21207908,
+"1959-08-24",
+96
+),
+(
+"Gabriel",
+"Harmon",
+57063950,
+"1976-04-01",
+27
+)
+
+-- Actualizar 5 clientes recientemente agregados en la base de datos dado que 
+--hubo un error en el JSON que traía la información, la sucursal de todos es 
+--la 10
+
+UPDATE cliente SET branch_id = 10 WHERE customer_id = 501
+UPDATE cliente SET branch_id = 10 WHERE customer_id = 502;
+UPDATE cliente SET branch_id = 10 WHERE customer_id = 503;
+UPDATE cliente SET branch_id = 10 WHERE customer_id = 504;
+UPDATE cliente SET branch_id = 10 WHERE customer_id = 505;
