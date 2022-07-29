@@ -93,9 +93,13 @@ Segunda problemática
 
 --Mostrar las columnas de los clientes, ordenadas por el DNI de menor 
 --a mayor y cuya edad sea superior a 40 años
-SELECT customer_DNI, date('now') as fecha,
+
+CREATE VIEW clientesMenoresDe40 AS SELECT *, date('now') as fecha,
 strftime ('%Y', date('now'))- strftime ('%Y', date(dob)) as EDAD
 FROM cliente WHERE EDAD >40  ORDER BY CAST(customer_DNI as INT) ASC;
+
+SELECT customer_id as 'ID', branch_id as 'N° sucursal',customer_name as 'Nombre', customer_surname as 'Apellido', customer_DNI as 'DNI' , EDAD from clientesMenoresDe40;
+
 
 --Mostrar todos los clientes que se llaman “Anne” o “Tyler” ordenados 
 --por edad de menor a mayor
@@ -146,6 +150,7 @@ VALUES
 27
 )
 
+
 -- Actualizar 5 clientes recientemente agregados en la base de datos dado que 
 --hubo un error en el JSON que traía la información, la sucursal de todos es 
 --la 10
@@ -155,3 +160,31 @@ UPDATE cliente SET branch_id = 10 WHERE customer_id = 502;
 UPDATE cliente SET branch_id = 10 WHERE customer_id = 503;
 UPDATE cliente SET branch_id = 10 WHERE customer_id = 504;
 UPDATE cliente SET branch_id = 10 WHERE customer_id = 505;
+
+
+-- Eliminar el registro correspondiente a “Noel David” realizando la selección 
+--por el nombre y apellido (PRIMERO SE TIENE QUE CREAR)
+
+INSERT INTO cliente (customer_name, customer_surname, customer_DNI, dob, branch_id)
+VALUES
+(
+"David",
+"Noel",
+43711236,
+"2001-09-20",
+100
+);
+
+SELECT customer_name,customer_surname from cliente WHERE customer_surname = 'Noel' and customer_name = 'David';
+
+DELETE FROM cliente WHERE customer_surname = 'Noel' and customer_name = 'David';
+
+
+-- Consultar sobre cuál es el tipo de préstamo de mayor importe
+
+SELECT max(loan_total) FROM prestamo
+
+
+=========================================================================================================================================
+
+Tercera problemática 
