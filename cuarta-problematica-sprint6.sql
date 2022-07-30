@@ -47,3 +47,14 @@ select avg(prestamo.loan_total) as promedio_credito,
 			on
 			cliente.branch_id = sucursal.branch_id
 				group by sucursal.branch_id;
+
+
+
+
+
+--6,
+
+CREATE VIEW busquedaDNI as
+SELECT customer_id as 'Cliente ID', customer_DNI as 'DNI' FROM cliente
+
+select * from busquedaDNI
