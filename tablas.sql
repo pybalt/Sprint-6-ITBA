@@ -187,4 +187,15 @@ SELECT max(loan_total) FROM prestamo
 
 =========================================================================================================================================
 
-Tercera problemática 
+create table auditoria_cuenta (
+old_id INTEGER not null,
+new_id INTEGER not null,
+old_balance INTEGER not null,
+new_balance INTEGER not null,
+old_iban TEXT not null,
+new_iban TEXT not null,
+old_type text not null,
+new_type text not null,
+user_action text not null,
+created_at datetime
+)
