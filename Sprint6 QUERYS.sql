@@ -2184,10 +2184,68 @@ INSERT INTO "direccion" ("direccion_id","direccion_calle","direccion_numero_call
  (500,'YUNKA',2021,'FORMOSA','FORMOSA','ARGENTINA');
 
  --8tavo item
+ ALTER TABLE cuenta ADD COLUMN tipo_cuenta_id INTEGER;
+ 
+INSERT INTO cuenta (tipo_cuenta_id) RANGE(1,3);
 
+-- TENEMOS QUE VER COMO CARGAR 3 OPCIONES EN MUCHOS CLIENTES USANDO UN RANDOM() O UN RANGE RANDOMVALUE
  --9no item
+ --FALTA PLANTEAR ESTE PUNTO DE RELACION
 
  --10 item
+ UPDATE empleado SET
+employee_hire_date = substr(employee_hire_date, 7,4)
+||"-"||substr(employee_hire_date, 4,2)
+||"-"||substr(employee_hire_date, 1,2);
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+UPDATE empleado SET employee_hire_date =  REPLACE(employee_hire_date,'/','-');
+
+CREATE TABLE empleado2 ( employee_id INTEGER, employee_name TEXT, employee_surname TEXT,
+employee_hire_date date, employee_DNI TEXT, branch_id INTEGER);
+
+INSERT INTO empleado2(employee_id, employee_name, employee_surname, employee_hire_date, 
+employee_DNI,branch_id) SELECT * FROM empleado;
+
+DROP TABLE empleado;
+
+ALTER TABLE empleado2 RENAME TO empleado ;
+
+select strftime('%d-%m-%Y', employee_hire_date) from empleado;
+
+SELECT employee_hire_date FROM empleado;
+
+
+SELECT strftime('%Y/%m/%d', 'now');
+
+
+
+UPDATE empleado SET
+
+employee_hire_date = substr(employee_hire_date, 7,4)||"-"||substr(employee_hire_date, 4,2)||"-"||substr(employee_hire_date, 1,2);
+
+
+
+
+SELECT employee_hire_date from empleado
+
+SELECT dob from cliente;
+
+ALTER TABLE empleado ADD COLUMN employee_hire_date3 TEXT;
+
+DROP employee_hire_date2 from empleado;
+
+alter TABLE empleado drop COLUMN employee_hire_date3;
+
+alter TABLE empleado.employee_hire_date3 RENAME COLUMN employee_hire_date2;
+
  
  --Segunda Problematica
  DROP VIEW clientesMenores40;
