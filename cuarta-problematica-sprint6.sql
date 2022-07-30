@@ -47,7 +47,7 @@ select avg(prestamo.loan_total) as promedio_credito,
 			on
 			cliente.branch_id = sucursal.branch_id
 				group by sucursal.branch_id;
-				
+
 
 --5,
 
@@ -64,6 +64,34 @@ user_action text not null,
 created_at datetime
 )
 
+INSERT INTO auditoria_cuenta (old_id, new_id, old_balance, new_balance, old_iban, new_iban, old_type, new_type, user_action, created_at)
+VALUES
+(
+1,
+2,
+3,
+4,
+5,
+6,
+7,
+8,
+9,
+datetime('now')
+);
+
+
+CREATE TRIGGER cuenta_BU BEFORE UPDATE on cuenta FOR EACH ROW INSERT INTO auditoria_cuenta
+(
+old_id, new_id, old_balance, new_balance, 
+old_iban, new_iban, old_type, new_type, 
+user_action, created_at
+)
+VALUES
+(
+old.account_id, new.account_id, old.balance, new.balance,
+old.iban, new.iban, old.old_type, new.new_type,
+user_action, '2020-10-10') 
+)
 
 --6,
 
