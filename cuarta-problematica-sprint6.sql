@@ -53,3 +53,27 @@ select avg(prestamo.loan_total) as promedio_credito,
 			on
 			cliente.branch_id = sucursal.branch_id
 				group by sucursal.branch_id;
+				
+
+--5,
+
+create table auditoria_cuenta (
+old_id INTEGER not null,
+new_id INTEGER not null,
+old_balance INTEGER not null,
+new_balance INTEGER not null,
+old_iban TEXT not null,
+new_iban TEXT not null,
+old_type text not null,
+new_type text not null,
+user_action text not null,
+created_at datetime
+)
+
+
+--6,
+
+CREATE VIEW busquedaDNI as
+SELECT customer_id as 'Cliente ID', customer_DNI as 'DNI' FROM cliente
+
+select * from busquedaDNI
