@@ -13,12 +13,11 @@ select
 --2.
 select 
 	empleado.branch_id,
-	count(empleado.employee_id) / count(cliente.customer_id) 
-	as relacion_cliente_empleado
+	CAST (count(empleado.employee_id) / count(cliente.customer_id)as REAL) as relacion_cliente_empleado
 		from sucursal
 			inner join cliente
 				on
-				sucursal.branch_id = cliente.branch_id
+				sucursal.branch_id = cliente.branch_id 
 			inner join empleado 
 				on
 				cliente.branch_id = empleado.branch_id
