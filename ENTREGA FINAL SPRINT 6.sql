@@ -5425,7 +5425,7 @@ select avg(prestamo.loan_total) as promedio_credito,
 				group by sucursal.branch_id;
 
 
---5,
+--5-1,
 
 create table auditoria_cuenta (
 old_id INTEGER not null,
@@ -5436,38 +5436,46 @@ old_iban TEXT not null,
 new_iban TEXT not null,
 old_type text not null,
 new_type text not null,
-user_action text not null,
-created_at datetime
+created_at date
 )
 
-INSERT INTO auditoria_cuenta (old_id, new_id, old_balance, new_balance, old_iban, new_iban, old_type, new_type, user_action, created_at)
-VALUES
-(
-1,
-2,
-3,
-4,
-5,
-6,
-7,
-8,
-9,
-datetime('now')
-);
-
-
-CREATE TRIGGER cuenta_BU BEFORE UPDATE on cuenta FOR EACH ROW INSERT INTO auditoria_cuenta
+CREATE TRIGGER cuenta_BU BEFORE UPDATE 
+on cuenta 
+BEGIN
+INSERT INTO auditoria_cuenta
 (
 old_id, new_id, old_balance, new_balance, 
-old_iban, new_iban, old_type, new_type, 
-user_action, created_at
+old_iban, new_iban, old_type, new_type, created_at
 )
 VALUES
 (
 old.account_id, new.account_id, old.balance, new.balance,
-old.iban, new.iban, old.old_type, new.new_type,
-user_action, '2020-10-10') 
-)
+old.iban, new.iban, old.tipo_cuenta_id, new.tipo_cuenta_id, date('now')
+);
+END;
+
+UPDATE cuenta 
+SET
+   balance = 1000, iban = 'FI5598296752114345', tipo_cuenta_id = 1 WHERE account_id = 1;
+
+
+--5-2,
+
+UPDATE cuenta 
+SET
+   balance = balance-100 WHERE account_id = 10;
+   UPDATE cuenta 
+SET
+   balance = balance-100 WHERE account_id = 11;
+   UPDATE cuenta 
+SET
+   balance = balance-100 WHERE account_id = 12;
+   UPDATE cuenta 
+SET
+   balance = balance-100 WHERE account_id = 13;
+   UPDATE cuenta 
+SET
+   balance = balance-100 WHERE account_id = 14;
 
 --6,
 
@@ -5476,4 +5484,4 @@ SELECT customer_id as 'Cliente ID', customer_DNI as 'DNI' FROM cliente
 
 select * from busquedaDNI
 
--- agregar trigeed
+-- Agregar punto 7
